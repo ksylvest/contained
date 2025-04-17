@@ -16,6 +16,20 @@ module Contained
         @stdout.puts("[setup] stack=#{stack} environment=#{@environment}")
 
         on hosts, in: :sequence do
+          execute(:which, "curl") do |_, _, status|
+            if status.exitstatus != 0
+              @stdout.puts("missing curl")
+              exit(1)
+            end
+          end
+
+          execute(:which, "docker") do |_, _, status|
+            if status.exitstatus != 0
+              @stdout.puts("missing docker")
+              execute("curl -sSL https://get.docker.com | sh")
+            end
+          end
+
           execute(:docker, :login, "-u", username, "-p", password) if username && password
 
           execute(:docker, :swarm, :init) unless capture(:docker, :info).include?("Swarm: active")
