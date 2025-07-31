@@ -1,19 +1,5 @@
 version: 2.1
 
-commands:
-  codeclimate:
-    steps:
-      - run: |
-          if [ -n "$CC_TEST_REPORTER_ID" ] && [ -n "$CC_TEST_REPORTER_VERSION" ]; then
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-$CC_TEST_REPORTER_VERSION > ./cc
-            chmod +x ./cc
-            ./cc format-coverage -t simplecov coverage/coverage.json
-            ./cc upload-coverage
-            rm ./cc
-          else
-            echo "[SKIPPING] codeclimate"
-          fi
-
 orbs:
   ruby: circleci/ruby@2.5.3
   qlty: qltysh/qlty-orb@0.0.11
