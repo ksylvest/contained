@@ -16,6 +16,7 @@ commands:
 
 orbs:
   ruby: circleci/ruby@2.5.3
+  qlty: qltysh/qlty-orb@0.0.11
 
 executors:
   default:
@@ -34,6 +35,7 @@ jobs:
       - checkout
       - ruby/install-deps
       - run: bundle exec yard doc
+
   rspec:
     parameters:
       ruby-version:
@@ -46,13 +48,16 @@ jobs:
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
-      - codeclimate
+      - qlty/coverage_publish:
+          files: ./coverage/.resultset.json
+
   rubocop:
     executor: default
     steps:
       - checkout
       - ruby/install-deps
       - ruby/rubocop-check
+
   release:
     executor: default
     steps:
