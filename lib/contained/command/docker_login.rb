@@ -34,7 +34,7 @@ module Contained
 
       # @return [String, nil]
       def password
-        @config.dig("registry", "username")
+        @config.dig("registry", "password")
       end
 
       # @return [String]
