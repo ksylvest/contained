@@ -8,7 +8,7 @@ module Contained
       # @param stdout [IO]
       # @param argv [Array<String>]
       def self.handle!(stdin:, stdout:, argv:)
-        new(stdin: stdin, stdout: stdout, argv: argv).handle!
+        new(stdin:, stdout:, argv:).handle!
       end
 
       # @param stdin [IO]
