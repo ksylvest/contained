@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    contained (1.0.0)
+    contained (1.1.0)
       erb
       fileutils
       optparse

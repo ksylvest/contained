@@ -131,3 +131,11 @@ demo.com {
   }
 }
 ```
+
+### Deploy
+
+The `contained deploy` command connects to all the hosts within an environment via SSH and prunes docker then re-deploys the stack.
+
+```bash
+contained deploy --environment production
+```
