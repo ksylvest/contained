@@ -16,6 +16,7 @@ module Contained
 
         on hosts, in: :sequence do
           execute(:docker, :login, "-u", username, "-p", password) if username && password
+          execute(:docker, :system, :prune, "-f")
 
           execute(<<~BASH)
             source ./.contained/#{stack}/.env
